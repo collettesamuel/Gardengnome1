@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GardenGnomeApp.ActivitySheetsNav1">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Activity Sheets Page 1"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Button Text="Activity Sheets 2" 
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
+                    Clicked="ActivitySheets2Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
