@@ -1,12 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GardenGnomeApp.TicTacToe">
+             x:Class="GardenGnomeApp.TicTacToe"
+             Title="Tic Tac Toe">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Tic Tac Toe Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Grid RowSpacing="1" ColumnSpacing="1" Padding="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Button BorderRadius="0" Text="A" BackgroundColor="Blue" Grid.Column="0" Grid.Row="0"/>
+                <Button BorderRadius="0" BackgroundColor="Black" Grid.Column="1" Grid.Row="0"/>
+                <Button BorderRadius="0" BackgroundColor="Blue" Grid.Column="2" Grid.Row="0"/>
+                <Button BorderRadius="0" BackgroundColor="Black" Grid.Column="0" Grid.Row="1"/>
+                <Button BorderRadius="0" BackgroundColor="Blue" Grid.Column="1" Grid.Row="1"/>
+                <Button BorderRadius="0" BackgroundColor="Black" Grid.Column="2" Grid.Row="1"/>
+                <Button BorderRadius="0" BackgroundColor="Blue" Grid.Column="0" Grid.Row="2"/>
+                <Button BorderRadius="0" BackgroundColor="Black" Grid.Column="1" Grid.Row="2"/>
+                <Button BorderRadius="0" BackgroundColor="Blue" Grid.Column="2" Grid.Row="2"/>
+            </Grid>
+            <Label Text="Player 1"></Label>
+            <Label Text="Player 2"></Label>
+            <Button></Button>
+            <Button></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
