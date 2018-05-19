@@ -7,31 +7,31 @@
         <StackLayout Orientation="Vertical" x:Name="outerStack">
             <Grid RowSpacing="1" ColumnSpacing="1" Padding="0" VerticalOptions="FillAndExpand" x:Name="mainGrid">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width=".33*"></ColumnDefinition>
+                    <ColumnDefinition Width=".33*"></ColumnDefinition>
+                    <ColumnDefinition Width=".33*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height=".33*"></RowDefinition>
+                    <RowDefinition Height=".33*"></RowDefinition>
+                    <RowDefinition Height=".33*"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Button BorderRadius="0" BackgroundColor="Blue" Grid.Column="0" Grid.Row="0"/>
-                <Button BorderRadius="0" BackgroundColor="Black" Grid.Column="1" Grid.Row="0"/>
-                <Button BorderRadius="0" BackgroundColor="Blue" Grid.Column="2" Grid.Row="0"/>
-                <Button BorderRadius="0" BackgroundColor="Black" Grid.Column="0" Grid.Row="1"/>
-                <Button BorderRadius="0" BackgroundColor="Blue" Grid.Column="1" Grid.Row="1"/>
-                <Button BorderRadius="0" BackgroundColor="Black" Grid.Column="2" Grid.Row="1"/>
-                <Button BorderRadius="0" BackgroundColor="Red" Grid.Column="0" Grid.Row="2"/>
-                <Button BorderRadius="0" BackgroundColor="Black" Grid.Column="1" Grid.Row="2"/>
-                <Button BorderRadius="0" BackgroundColor="Blue" Grid.Column="2" Grid.Row="2"/>
+                <Button Grid.Column="0" Grid.Row="0" x:Name="Button0_0" Clicked="buttonClicked"/>
+                <Button Grid.Column="1" Grid.Row="0" x:Name="Button1_0" Clicked="buttonClicked"/>
+                <Button Grid.Column="2" Grid.Row="0" x:Name="Button2_0" Clicked="buttonClicked"/>
+                <Button Grid.Column="0" Grid.Row="1" x:Name="Button0_1" Clicked="buttonClicked"/>
+                <Button Grid.Column="1" Grid.Row="1" x:Name="Button1_1" Clicked="buttonClicked"/>
+                <Button Grid.Column="2" Grid.Row="1" x:Name="Button2_1" Clicked="buttonClicked"/>
+                <Button Grid.Column="0" Grid.Row="2" x:Name="Button0_2" Clicked="buttonClicked"/>
+                <Button Grid.Column="1" Grid.Row="2" x:Name="Button1_2" Clicked="buttonClicked"/>
+                <Button Grid.Column="2" Grid.Row="2" x:Name="Button2_2" Clicked="buttonClicked"/>
             </Grid>
             <StackLayout Orientation="Vertical">
-            <Label Text="Player 1"></Label>
-                <Label Text="Player 2"></Label>
+            <Label Text="Player 1:  X"></Label>
+                <Label Text="Player 2:  O"></Label>
                 <Button></Button>
-            <Button></Button>
+            <Button Text="Reset" Clicked="resetClicked"></Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -6,16 +6,16 @@
 
     <StackLayout>
         <Button Text="Play" 
-                    VerticalOptions="CenterAndExpand"
-                    HorizontalOptions="Center"
-                    Clicked="PlayClicked"/>
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                Clicked="PlayClicked"/>
         <Button Text="Activity Sheets" 
-                    VerticalOptions="CenterAndExpand"
-                    HorizontalOptions="Center"
-                    Clicked="ActivitySheetsClicked"/>
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                Clicked="ActivitySheetsClicked"/>
         <Button Text="Settings" 
-                    VerticalOptions="CenterAndExpand"
-                    HorizontalOptions="Center"
-                    Clicked="SettingsClicked"/>
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                Clicked="SettingsClicked"/>
     </StackLayout>
 </ContentPage>
