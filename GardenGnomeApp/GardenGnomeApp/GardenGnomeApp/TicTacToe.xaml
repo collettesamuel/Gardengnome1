@@ -28,8 +28,8 @@
                 <Button Grid.Column="2" Grid.Row="2" x:Name="Button2_2" Clicked="buttonClicked"/>
             </Grid>
             <StackLayout Orientation="Vertical">
-            <Label Text="Player 1:  X"></Label>
-                <Label Text="Player 2:  O"></Label>
+                <Label x:Name="playerOneLabel"/>
+                <Label x:Name="playerTwoLabel"/>
                 <Button></Button>
             <Button Text="Reset" Clicked="resetClicked"></Button>
             </StackLayout>

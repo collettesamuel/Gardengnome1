@@ -15,6 +15,8 @@ namespace GardenGnomeApp
         public TicTacToe()
         {
             InitializeComponent();
+            playerTwoLabel.Text = "Player 2: O";
+            playerOneLabel.Text = "Player 1: X <<";
         }
         // Responsive Layout
         private double width = 0;
@@ -39,7 +41,6 @@ namespace GardenGnomeApp
                     outerStack.Orientation = StackOrientation.Vertical;
                     mainGrid.HeightRequest = width;
                     mainGrid.WidthRequest = width;
-                    
                 }
             }
         }
@@ -52,17 +53,23 @@ namespace GardenGnomeApp
             Button b = (Button)sender;
             if (turn)
             {
+                playerOneLabel.Text = "Player 1: X";
+                playerTwoLabel.Text = "Player 2: O <<";
                 b.Text = "X";
                 b.FontSize = 25;
             }
             else
             {
+                playerTwoLabel.Text = "Player 2: O";
+                playerOneLabel.Text = "Player 1: X <<";
                 b.Text = "O";
                 b.FontSize = 25;
             }
             turn = !turn;
             b.IsEnabled = false;
             checkForWinner();
+            System.Diagnostics.Debug.WriteLine("Finished Checking" + winner);
+            System.Diagnostics.Debug.WriteLine(Button0_0.Text + Button1_0.Text + Button2_0.Text);
         }
 
         private void checkForWinner()
@@ -70,25 +77,41 @@ namespace GardenGnomeApp
             System.Diagnostics.Debug.WriteLine("CheckforWinner Working" + winner);
             //Horizontal checks
             if ((Button0_0.Text == Button1_0.Text) && (Button1_0.Text == Button2_0.Text) && (Button0_0.IsEnabled == false))
-            { winner = true; }
+            { winner = true;
+                System.Diagnostics.Debug.WriteLine("1");
+            }
             if ((Button0_1.Text == Button1_1.Text) && (Button1_1.Text == Button2_1.Text) && (Button0_1.IsEnabled == false))
-            { winner = true; }
+            { winner = true;
+                System.Diagnostics.Debug.WriteLine("2");
+            }
             if ((Button0_2.Text == Button1_2.Text) && (Button1_2.Text == Button2_2.Text) && (Button0_2.IsEnabled == false))
-            { winner = true; }
+            { winner = true;
+                System.Diagnostics.Debug.WriteLine("3");
+            }
 
             //Veritical Checks                                                                                 
-            if ((Button0_0.Text == Button1_0.Text) && (Button1_0.Text == Button2_0.Text) && (Button0_0.IsEnabled == false))
-            { winner = true; }
-            if ((Button0_1.Text == Button1_1.Text) && (Button1_1.Text == Button2_1.Text) && (Button0_1.IsEnabled == false))
-            { winner = true; }
-            if ((Button0_2.Text == Button1_2.Text) && (Button1_2.Text == Button2_2.Text) && (Button0_2.IsEnabled == false))
-            { winner = true; }
+            if ((Button0_0.Text == Button0_1.Text) && (Button0_1.Text == Button0_2.Text) && (Button0_0.IsEnabled == false))
+            { winner = true;
+                System.Diagnostics.Debug.WriteLine("4");
+            }
+            if ((Button1_0.Text == Button1_1.Text) && (Button1_1.Text == Button1_2.Text) && (Button1_0.IsEnabled == false))
+            { winner = true;
+                System.Diagnostics.Debug.WriteLine("5");
+            }
+            if ((Button2_0.Text == Button2_1.Text) && (Button2_1.Text == Button2_2.Text) && (Button2_0.IsEnabled == false))
+            { winner = true;
+                System.Diagnostics.Debug.WriteLine("6");
+            }
 
             //Diagonal Checks                                                                                   
             if ((Button0_0.Text == Button1_1.Text) && (Button1_1.Text == Button2_2.Text) && (Button0_0.IsEnabled == false))
-            { winner = true; }
+            { winner = true;
+                System.Diagnostics.Debug.WriteLine("7");
+            }
             if ((Button0_2.Text == Button1_1.Text) && (Button1_1.Text == Button2_0.Text) && (Button0_2.IsEnabled == false))
-            { winner = true; }
+            { winner = true;
+                System.Diagnostics.Debug.WriteLine("8");
+            }
             
             //Declaring winner
             if (winner == true)
@@ -100,6 +123,16 @@ namespace GardenGnomeApp
                 { winnerName = "1"; }
 
                 DisplayAlert("Game Over","Player " + winnerName + " Wins!", "OK");
+                // stop the user from pressing more buttons after winning
+                Button0_0.IsEnabled = false;
+                Button1_0.IsEnabled = false;
+                Button2_0.IsEnabled = false;
+                Button0_1.IsEnabled = false;
+                Button1_1.IsEnabled = false;
+                Button2_1.IsEnabled = false;
+                Button0_2.IsEnabled = false;
+                Button1_2.IsEnabled = false;
+                Button2_2.IsEnabled = false;
             }
         }
         
@@ -125,9 +158,17 @@ namespace GardenGnomeApp
             Button1_2.IsEnabled = true;
             Button2_2.IsEnabled = true;
 
+
+            playerTwoLabel.Text = "Player 2: O";
+            playerOneLabel.Text = "Player 1: X <<";
             turn = true;
             winner = false;
             System.Diagnostics.Debug.WriteLine("Check Variables turn: " + turn +" winner: " + winner);
         }
     }
 }
+
+/*
+ notes:
+ click too fast wont update winner
+ */
