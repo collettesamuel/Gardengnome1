@@ -29,9 +29,14 @@
             </Grid>
             <StackLayout Orientation="Vertical">
                 <Label x:Name="playerOneLabel"/>
-                <Label x:Name="playerTwoLabel"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="playerTwoLabel"/>
+                    <Button x:Name="easyButton" Text="Easy" Clicked="easyClicked"/>
+                    <Button x:Name="moderateButton" Text="Moderate" Clicked="moderateClicked"/>
+                    <Button x:Name="hardButton" Text="Hard" Clicked="hardClicked"/>
+                </StackLayout>
                 <Button x:Name="playAgainstButton" Clicked="playAgainstClicked"></Button>
-            <Button Text="Reset" Clicked="resetClicked"></Button>
+                <Button Text="Reset" Clicked="resetClicked"></Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

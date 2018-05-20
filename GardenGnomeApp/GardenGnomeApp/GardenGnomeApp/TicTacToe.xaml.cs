@@ -18,6 +18,9 @@ namespace GardenGnomeApp
             playerTwoLabel.Text = "Player 2: O";
             playerOneLabel.Text = "Player 1: X <<";
             playAgainstButton.Text = "Play Agaisnt Computer";
+            easyButton.IsVisible = false;
+            moderateButton.IsVisible = false;
+            hardButton.IsVisible = false;
         }
         // Responsive Layout
         private double width = 0;
@@ -73,7 +76,12 @@ namespace GardenGnomeApp
             if ((!turn) && (ai == true))
             {
                 System.Diagnostics.Debug.WriteLine("computer is moving");
-                computerMove();
+                if (difficulty == "Easy")
+                    easyComputerMove();
+                if (difficulty == "Moderate")
+                    moderateComputerMove();
+                if (difficulty == "Hard")
+                    hardComputerMove();
             }
         }
 
@@ -189,24 +197,118 @@ namespace GardenGnomeApp
 
         // Play Agianst Computer
         bool ai = false; // not agianst computer by default
+        string difficulty = "Moderate"; //morderate by default
         //Play Agianst Computer Button
         private void playAgainstClicked() {
             if (playAgainstButton.Text == "Play Agaisnt Computer")
             {
                 playAgainstButton.Text = "Play Agiasnt Player 2";
                 resetClicked();
-                ai = true;      
+                ai = true;
+                easyButton.IsVisible = true;
+                moderateButton.IsVisible = true;
+                hardButton.IsVisible = true;
             }
             else
             {
                 playAgainstButton.Text = "Play Agaisnt Computer";
                 resetClicked();
                 ai = false;
+                easyButton.IsVisible = false;
+                moderateButton.IsVisible = false;
+                hardButton.IsVisible = false;
             }
             System.Diagnostics.Debug.WriteLine("Ai: " + ai);
         }
 
-        private void computerMove()
+        //Changing Difficulty
+        private void easyClicked()
+        {
+            difficulty = "Easy";
+            easyButton.IsEnabled = false;
+            moderateButton.IsEnabled = true;
+            hardButton.IsEnabled = true;
+            resetClicked();
+        }
+
+        private void moderateClicked()
+        {
+            difficulty = "Moderate";
+            easyButton.IsEnabled = true;
+            moderateButton.IsEnabled = false;
+            hardButton.IsEnabled = true;
+            resetClicked();
+        }
+
+        private void hardClicked()
+        {
+            difficulty = "Hard";
+            easyButton.IsEnabled = true;
+            moderateButton.IsEnabled = true;
+            hardButton.IsEnabled = false;
+            resetClicked();
+        }
+
+        // easy AI
+        private void easyComputerMove()
+        {
+            Button move = null;
+            
+            if (
+                (Button0_0.IsEnabled == false) &&
+                (Button1_0.IsEnabled == false) &&
+                (Button2_0.IsEnabled == false) &&
+                (Button0_1.IsEnabled == false) &&
+                (Button1_1.IsEnabled == false) &&
+                (Button2_1.IsEnabled == false) &&
+                (Button0_2.IsEnabled == false) &&
+                (Button1_2.IsEnabled == false) &&
+                (Button2_2.IsEnabled == false))// end condition
+            {
+
+            }
+            else
+            {
+                while (move == null)
+                {
+                    move = randomMove();
+                }
+                move.SendClicked();
+            }
+
+            System.Diagnostics.Debug.WriteLine("computer clicked: " + move);
+        }
+
+        private Button randomMove()
+        {
+            
+            Random rnd = new Random();
+            int anyMove = rnd.Next(1, 10);
+            System.Diagnostics.Debug.WriteLine("computer looking random move"+anyMove);
+            if ((Button1_1.Text == "") && (anyMove == 1))
+                return Button1_1;
+            if ((Button1_0.Text == "") && (anyMove == 2))
+                return Button1_0;
+            if ((Button0_1.Text == "") && (anyMove == 3))
+                return Button0_1;
+            if ((Button2_1.Text == "") && (anyMove == 4))
+                return Button2_1;
+            if ((Button1_2.Text == "") && (anyMove == 5))
+                return Button1_2;
+            if ((Button0_0.Text == "") && (anyMove == 6))
+                return Button0_0;
+            if ((Button2_0.Text == "") && (anyMove == 7))
+                return Button2_0;
+            if ((Button0_2.Text == "") && (anyMove == 8))
+                return Button0_2;
+            if ((Button2_2.Text == "") && (anyMove == 9))
+                return Button2_2;
+
+            return null;
+        }
+
+        // morderate AI
+        private void moderateComputerMove()
         {
             //priority 1:  get tick tac toe
             //priority 2:  block x tic tac toe
@@ -321,11 +423,11 @@ namespace GardenGnomeApp
             if (Button0_0.Text == "")
                 return Button0_0;
             if (Button2_0.Text == "")
-                return Button0_0;
+                return Button2_0;
             if (Button0_2.Text == "")
-                return Button0_0;
+                return Button0_2;
             if (Button2_2.Text == "")
-                return Button0_0;
+                return Button2_2;
 
             return null;
         }
@@ -344,6 +446,109 @@ namespace GardenGnomeApp
                 return Button2_1;
             if (Button1_2.Text == "")
                 return Button1_2;
+
+            return null;
+        }
+
+        // hard AI
+        private void hardComputerMove()
+        {
+            //priority 1:  get tick tac toe
+            //priority 2:  block x tic tac toe
+            //priority 3:  go for corner space
+            //priority 4:  pick open space
+
+            Button move = null;
+
+            //look for tic tac toe opportunities
+            move = lookForWinOrBlock("O"); //look for win
+            if (move == null)
+            {
+                move = lookForWinOrBlock("X"); //look for block
+                if (move == null)
+                {
+                    move = lookForCornerHard(); // look for opposite corners / any empty corner
+                    if (move == null)
+                    {
+                        if ( // randomise looking for open space move
+                            (Button0_0.IsEnabled == false) &&
+                            (Button1_0.IsEnabled == false) &&
+                            (Button2_0.IsEnabled == false) &&
+                            (Button0_1.IsEnabled == false) &&
+                            (Button1_1.IsEnabled == false) &&
+                            (Button2_1.IsEnabled == false) &&
+                            (Button0_2.IsEnabled == false) &&
+                            (Button1_2.IsEnabled == false) &&
+                            (Button2_2.IsEnabled == false))// end condition
+                        {
+
+                        }
+                        else
+                        {
+                            while (move == null)
+                            {
+                                move = randomMove();
+                            }
+                        }
+                    }
+                }
+            }
+            if (
+            (Button0_0.IsEnabled == false) &&
+            (Button1_0.IsEnabled == false) &&
+            (Button2_0.IsEnabled == false) &&
+            (Button0_1.IsEnabled == false) &&
+            (Button1_1.IsEnabled == false) &&
+            (Button2_1.IsEnabled == false) &&
+            (Button0_2.IsEnabled == false) &&
+            (Button1_2.IsEnabled == false) &&
+            (Button2_2.IsEnabled == false))// end condition
+            {
+
+            }
+            else
+            {
+                move.SendClicked();
+            }
+            System.Diagnostics.Debug.WriteLine("computer clicked: " + move);
+        }
+
+        private Button lookForCornerHard()
+        {
+            System.Diagnostics.Debug.WriteLine("computer looking for corner");
+            if (Button0_0.Text == "O")
+            {
+                if (Button2_2.Text == "")
+                    return Button2_2;
+            }
+
+            if (Button2_0.Text == "O")
+            {
+                if (Button0_2.Text == "")
+                    return Button0_2;
+            }
+
+            if (Button2_2.Text == "O")
+            {
+                if (Button0_0.Text == "")
+                    return Button0_0;
+            }
+
+            if (Button0_2.Text == "O")
+            {
+                if (Button2_0.Text == "")
+                    return Button2_0;
+            }
+
+
+            if (Button0_0.Text == "")
+                return Button0_0;
+            if (Button2_0.Text == "")
+                return Button2_0;
+            if (Button0_2.Text == "")
+                return Button0_2;
+            if (Button2_2.Text == "")
+                return Button2_2;
 
             return null;
         }
