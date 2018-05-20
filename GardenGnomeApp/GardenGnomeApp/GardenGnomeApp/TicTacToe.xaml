@@ -30,7 +30,7 @@
             <StackLayout Orientation="Vertical">
                 <Label x:Name="playerOneLabel"/>
                 <Label x:Name="playerTwoLabel"/>
-                <Button></Button>
+                <Button x:Name="playAgainstButton" Clicked="playAgainstClicked"></Button>
             <Button Text="Reset" Clicked="resetClicked"></Button>
             </StackLayout>
         </StackLayout>

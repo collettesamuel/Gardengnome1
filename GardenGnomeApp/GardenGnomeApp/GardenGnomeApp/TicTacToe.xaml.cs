@@ -17,6 +17,7 @@ namespace GardenGnomeApp
             InitializeComponent();
             playerTwoLabel.Text = "Player 2: O";
             playerOneLabel.Text = "Player 1: X <<";
+            playAgainstButton.Text = "Play Agaisnt Computer";
         }
         // Responsive Layout
         private double width = 0;
@@ -68,8 +69,12 @@ namespace GardenGnomeApp
             turn = !turn;
             b.IsEnabled = false;
             checkForWinner();
-            System.Diagnostics.Debug.WriteLine("Finished Checking" + winner);
-            System.Diagnostics.Debug.WriteLine(Button0_0.Text + Button1_0.Text + Button2_0.Text);
+
+            if ((!turn) && (ai == true))
+            {
+                System.Diagnostics.Debug.WriteLine("computer is moving");
+                computerMove();
+            }
         }
 
         private void checkForWinner()
@@ -134,6 +139,22 @@ namespace GardenGnomeApp
                 Button1_2.IsEnabled = false;
                 Button2_2.IsEnabled = false;
             }
+
+            //Check for Draw
+            if (
+            (Button0_0.IsEnabled == false)&&
+            (Button1_0.IsEnabled == false)&&
+            (Button2_0.IsEnabled == false)&&
+            (Button0_1.IsEnabled == false)&&
+            (Button1_1.IsEnabled == false)&&
+            (Button2_1.IsEnabled == false)&&
+            (Button0_2.IsEnabled == false)&&
+            (Button1_2.IsEnabled == false)&&
+            (Button2_2.IsEnabled == false)&&
+            (winner == false))// end condition
+                {
+                    DisplayAlert("Game Over", "Draw!", "OK");
+                }
         }
         
         // restting the game with reset button
@@ -164,6 +185,167 @@ namespace GardenGnomeApp
             turn = true;
             winner = false;
             System.Diagnostics.Debug.WriteLine("Check Variables turn: " + turn +" winner: " + winner);
+        }
+
+        // Play Agianst Computer
+        bool ai = false; // not agianst computer by default
+        //Play Agianst Computer Button
+        private void playAgainstClicked() {
+            if (playAgainstButton.Text == "Play Agaisnt Computer")
+            {
+                playAgainstButton.Text = "Play Agiasnt Player 2";
+                resetClicked();
+                ai = true;      
+            }
+            else
+            {
+                playAgainstButton.Text = "Play Agaisnt Computer";
+                resetClicked();
+                ai = false;
+            }
+            System.Diagnostics.Debug.WriteLine("Ai: " + ai);
+        }
+
+        private void computerMove()
+        {
+            //priority 1:  get tick tac toe
+            //priority 2:  block x tic tac toe
+            //priority 3:  go for corner space
+            //priority 4:  pick open space
+
+            Button move = null;
+
+            //look for tic tac toe opportunities
+            move = lookForWinOrBlock("O"); //look for win
+            if (move == null)
+            {
+                move = lookForWinOrBlock("X"); //look for block
+                if (move == null)
+                {
+                    move = lookForCorner();
+                    if (move == null)
+                    {
+                        move = lookForOpenSpace();
+                    }
+                }
+            }
+            if (
+            (Button0_0.IsEnabled == false) &&
+            (Button1_0.IsEnabled == false) &&
+            (Button2_0.IsEnabled == false) &&
+            (Button0_1.IsEnabled == false) &&
+            (Button1_1.IsEnabled == false) &&
+            (Button2_1.IsEnabled == false) &&
+            (Button0_2.IsEnabled == false) &&
+            (Button1_2.IsEnabled == false) &&
+            (Button2_2.IsEnabled == false))// end condition
+            {
+
+            }
+            else
+            {
+                move.SendClicked();
+            }
+            System.Diagnostics.Debug.WriteLine("computer clicked: " + move);
+        }
+
+        private Button lookForWinOrBlock(string mark)
+        {
+            System.Diagnostics.Debug.WriteLine("computer checking win or block");
+            //HORIZONTAL TESTS
+            if ((Button0_0.Text == mark) && (Button1_0.Text == mark) && (Button2_0.Text == ""))
+                return Button2_0;
+            if ((Button1_0.Text == mark) && (Button2_0.Text == mark) && (Button0_0.Text == ""))
+                return Button0_0;
+            if ((Button0_0.Text == mark) && (Button2_0.Text == mark) && (Button1_0.Text == ""))
+                return Button1_0;
+
+            if ((Button0_1.Text == mark) && (Button1_1.Text == mark) && (Button2_1.Text == ""))
+                return Button2_1;
+            if ((Button1_1.Text == mark) && (Button2_1.Text == mark) && (Button0_1.Text == ""))
+                return Button0_1;
+            if ((Button0_1.Text == mark) && (Button2_1.Text == mark) && (Button1_1.Text == ""))
+                return Button1_1;
+
+            if ((Button0_2.Text == mark) && (Button1_2.Text == mark) && (Button2_2.Text == ""))
+                return Button2_2;
+            if ((Button1_2.Text == mark) && (Button2_2.Text == mark) && (Button0_2.Text == ""))
+                return Button0_2;
+            if ((Button0_2.Text == mark) && (Button2_2.Text == mark) && (Button1_2.Text == ""))
+                return Button1_2;
+
+            //VERTICAL TESTS
+            if ((Button0_0.Text == mark) && (Button0_1.Text == mark) && (Button0_2.Text == ""))
+                return Button0_2;
+            if ((Button0_1.Text == mark) && (Button0_2.Text == mark) && (Button0_0.Text == ""))
+                return Button0_0;
+            if ((Button0_0.Text == mark) && (Button0_2.Text == mark) && (Button0_1.Text == ""))
+                return Button0_1;
+
+            if ((Button1_0.Text == mark) && (Button1_1.Text == mark) && (Button1_2.Text == ""))
+                return Button1_2;
+            if ((Button1_1.Text == mark) && (Button1_2.Text == mark) && (Button1_0.Text == ""))
+                return Button1_0;
+            if ((Button1_0.Text == mark) && (Button1_2.Text == mark) && (Button1_1.Text == ""))
+                return Button1_1;
+
+            if ((Button2_0.Text == mark) && (Button2_1.Text == mark) && (Button2_2.Text == ""))
+                return Button2_2;
+            if ((Button2_1.Text == mark) && (Button2_2.Text == mark) && (Button2_0.Text == ""))
+                return Button2_0;
+            if ((Button2_0.Text == mark) && (Button2_2.Text == mark) && (Button2_1.Text == ""))
+                return Button2_1;
+
+            //DIAGONAL TESTS
+            if ((Button0_0.Text == mark) && (Button1_1.Text == mark) && (Button2_2.Text == ""))
+                return Button2_2;
+            if ((Button1_1.Text == mark) && (Button2_2.Text == mark) && (Button0_0.Text == ""))
+                return Button0_0;
+            if ((Button0_0.Text == mark) && (Button2_2.Text == mark) && (Button1_1.Text == ""))
+                return Button1_1;
+
+            if ((Button2_0.Text == mark) && (Button1_1.Text == mark) && (Button0_2.Text == ""))
+                return Button0_2;
+            if ((Button1_1.Text == mark) && (Button0_2.Text == mark) && (Button2_0.Text == ""))
+                return Button2_0;
+            if ((Button2_0.Text == mark) && (Button0_2.Text == mark) && (Button1_1.Text == ""))
+                return Button1_1;
+
+            return null;
+        }
+
+        // can be harder
+        private Button lookForCorner()
+        {
+            System.Diagnostics.Debug.WriteLine("computer looking for corner");
+            if (Button0_0.Text == "")
+                return Button0_0;
+            if (Button2_0.Text == "")
+                return Button0_0;
+            if (Button0_2.Text == "")
+                return Button0_0;
+            if (Button2_2.Text == "")
+                return Button0_0;
+
+            return null;
+        }
+
+
+        private Button lookForOpenSpace()
+        {
+            System.Diagnostics.Debug.WriteLine("computer looking for empty space");
+            if (Button1_1.Text == "")
+                return Button1_1;
+            if (Button1_0.Text == "")
+                return Button1_0;
+            if (Button0_1.Text == "")
+                return Button0_1;
+            if (Button2_1.Text == "")
+                return Button2_1;
+            if (Button1_2.Text == "")
+                return Button1_2;
+
+            return null;
         }
     }
 }
