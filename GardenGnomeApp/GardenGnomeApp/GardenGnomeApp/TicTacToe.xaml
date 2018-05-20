@@ -28,15 +28,22 @@
                 <Button Grid.Column="2" Grid.Row="2" x:Name="Button2_2" Clicked="buttonClicked"/>
             </Grid>
             <StackLayout Orientation="Vertical">
-                <Label x:Name="playerOneLabel"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="playerOneLabel"/>
+                    <Label x:Name="playerOneScore"/>
+                    <Label x:Name="playerTwoScore"/>
+                </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label x:Name="playerTwoLabel"/>
                     <Button x:Name="easyButton" Text="Easy" Clicked="easyClicked"/>
                     <Button x:Name="moderateButton" Text="Moderate" Clicked="moderateClicked"/>
                     <Button x:Name="hardButton" Text="Hard" Clicked="hardClicked"/>
                 </StackLayout>
-                <Button x:Name="playAgainstButton" Clicked="playAgainstClicked"></Button>
-                <Button Text="Reset" Clicked="resetClicked"></Button>
+                <Button x:Name="playAgainstButton" Clicked="playAgainstClicked"/>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Play Again" Clicked="resetClicked"/>
+                    <Button Text="Reset Score" Clicked="resetScore"/>
+                </StackLayout>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

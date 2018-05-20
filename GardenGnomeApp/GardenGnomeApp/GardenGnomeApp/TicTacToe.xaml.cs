@@ -21,11 +21,14 @@ namespace GardenGnomeApp
             easyButton.IsVisible = false;
             moderateButton.IsVisible = false;
             hardButton.IsVisible = false;
+            playerOneScore.Text = string.Format("P1 Score: {0}",score1);
+            playerTwoScore.Text = string.Format("P2 Score: {0}",score2);
+            moderateButton.IsEnabled = false;
         }
         // Responsive Layout
         private double width = 0;
         private double height = 0;
-
+     
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height); //must be called
@@ -131,9 +134,17 @@ namespace GardenGnomeApp
             {
                 string winnerName = "";
                 if (turn)
-                { winnerName = "2"; }
+                {
+                    winnerName = "2";
+                    score2 += 1;
+                    playerTwoScore.Text = string.Format("P2 Score: {0}", score2);
+                }
                 else
-                { winnerName = "1"; }
+                {
+                    winnerName = "1";
+                    score1 += 1;
+                    playerOneScore.Text = string.Format("P1 Score: {0}", score1);
+                }
 
                 DisplayAlert("Game Over","Player " + winnerName + " Wins!", "OK");
                 // stop the user from pressing more buttons after winning
@@ -552,10 +563,18 @@ namespace GardenGnomeApp
 
             return null;
         }
+
+        //scoring system
+        double score1 = 0;
+        double score2 = 0;
+
+        private void resetScore()
+        {
+            score1 = 0;
+            score2 = 0;
+            playerOneScore.Text = string.Format("P1 Score: {0}", score1);
+            playerTwoScore.Text = string.Format("P2 Score: {0}", score2);
+        }
     }
 }
 
-/*
- notes:
- click too fast wont update winner
- */
