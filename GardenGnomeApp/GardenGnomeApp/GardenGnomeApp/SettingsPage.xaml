@@ -1,12 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GardenGnomeApp.SettingsPage">
+             x:Class="GardenGnomeApp.SettingsPage" Title="Settings">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Settings Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Sound Effects"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" />
+
+            <Slider/>
+
+            <Label Text="Background Music"
+                VerticalOptions="Fill" 
+                HorizontalOptions="Start" />
+            
+            <Slider/>
+            
+            <Label Text="Difficulty"
+                VerticalOptions="Fill" 
+                HorizontalOptions="Start" />
+
+            <RelativeLayout HorizontalOptions="FillAndExpand">
+                <Button Text="Easy" RelativeLayout.XConstraint="{ConstraintExpression 
+                Type=RelativeToParent,Property=Width,Factor=.0000,Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                Property=Width,Factor=.3333,Constant=0}"/>
+                <Button Text="Normal" RelativeLayout.XConstraint="{ConstraintExpression
+                Type=RelativeToParent,Property=Width,Factor=.3333,Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                Property=Width,Factor=.3333,Constant=0}"/>
+                <Button Text="Hard" RelativeLayout.XConstraint="{ConstraintExpression
+                Type=RelativeToParent,Property=Width,Factor=.6666,Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                Property=Width,Factor=.3333,Constant=0}"/>
+            </RelativeLayout>
+            
+            <Label Text="Notifications"
+                VerticalOptions="Fill" 
+                HorizontalOptions="Start" />
+
+            <Switch IsToggled="{Binding RememberLastUser}" HorizontalOptions="Center"/>
+
+            <Button Text="Apply"  BorderRadius="20" BorderWidth="2"
+                VerticalOptions="Fill"
+                HorizontalOptions="Center"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
